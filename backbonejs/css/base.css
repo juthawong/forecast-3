@@ -2,6 +2,7 @@ body {
 	font: normal 100% 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
 	background: #aaa;
 	background-size: cover;
+	background-size: contain;
 }
 
 /* backgrounds */
