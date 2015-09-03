@@ -1,0 +1,25 @@
+body {
+	font: normal 100% 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
+	background: #aaa;
+	background: url(../images/sunny.jpg) 50% 50% no-repeat;
+}
+
+#forecast {
+	font-family: 'Open Sans';
+}
+#forecast p[class^=icon] {
+	font-size: 4em;
+}
+
+#main-temp {
+	font-size: 10em;
+}
+
+footer {
+	display: none !important;
+}
+
+svg {
+	width: 256px !important;
+	height: 256px !important;
+}
