@@ -1,0 +1,119 @@
+
+body {
+	font: normal 100% 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
+	color: #fff;
+}
+
+.image {
+	font-size: 5em;
+	margin: 0;
+}
+
+.sunny {
+	background: #fff url(../images/sunny.jpg) 50% 50% no-repeat;
+}
+.rainy {
+	background: #fff url(../images/rainy.jpg) 50% 50% no-repeat;
+}
+.cloudy {
+	background: #fff url(../images/cloudy.jpg) 50% 50% no-repeat;
+}
+
+header span {
+	font-weight: bold;
+}
+h1 {
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#forecast {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, .25);
+	text-align: center;
+}
+#forecast div {
+	display: inline-block;
+	vertical-align: middle;
+	height: 10em;
+	width: 13.25%;
+}
+hr {
+	display: inline-block;
+	vertical-align: middle;
+	height: 10em;
+	width: 1px;
+	background: #fff;
+	border: none;
+}
+
+/* boxes */
+h2 {
+	margin: .5em 0;
+}
+.date {
+	font-size: .875em;
+	display: none;
+}
+.temp {
+	/*margin-top: 4em;*/
+	font-size: 1.25em;
+}
+
+footer {
+	padding: 1em;
+}
+.input {
+	width: 8em;
+	max-width: 100%;
+	font-size: 1.5em;
+	padding: .25em;
+	border: 1px solid #ccc;
+	border-radius: .25em;
+	background: transparent;
+	color: #fff;
+}
+.button {
+	-webkit-appearance: none;
+	-webkit-user-select: none;
+	padding: .25em .75em;
+	border: 1px solid #aaa;
+	font-size: 1.5em;
+	vertical-align: middle;
+}
+.button,
+.active {
+	background: #17c;
+	background: linear-gradient(to bottom, #48f, #48e);
+	color: #fff;
+	text-shadow: 0 1px 0 #000;
+}
+/* vertical alignemnt */
+.input,
+.button {
+	vertical-align: middle;
+}
+
+.pill {
+	margin: 0 2em;
+}
+.pill span {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 1.5em;
+	padding: .25em;
+	width: 2em;
+	border: 1px solid #aaa;
+	cursor: default;
+}
+.pill :first-child {
+	border-radius: .25em 0 0 .25em;
+}
+.pill :last-child {
+	border-radius: 0 .25em .25em 0;
+}
