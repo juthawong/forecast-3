@@ -1,19 +1,54 @@
 body {
 	font: normal 100% 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
 	background: #aaa;
-	background: url(../images/sunny.jpg) 50% 50% no-repeat;
+	background-size: cover;
 }
+
+/* backgrounds */
+.clear-sky-day {
+	background: url(../images/clear-sky-day.jpg) 50% 50% no-repeat;
+}
+.clear-sky-night {
+	background: url(../images/clear-sky-night.jpg) 50% 50% no-repeat;
+}
+
 
 #forecast {
 	font-family: 'Open Sans';
 }
 #forecast p[class^=icon] {
-	font-size: 4em;
+	font-size: 5em;
 }
 
-#main-temp {
+.main-description {
+	font-size: 2em;
+}
+.main-temp {
 	font-size: 10em;
 }
+
+/* box */
+.box {
+	background-color: rgba(0, 0, 0, .25);
+	padding: .5em;
+}
+h2 {
+	font-size: 4em;
+}
+.sub-day-temp,
+.sub-night-temp {
+	font-size: 3em;
+}
+.sub-day-temp span,
+.sub-night-temp span {
+	padding: 0 .25em;
+}
+.sub-night-temp span {
+	background-color: rgba(0, 0, 0, .5);
+	color: #ccc;
+	border-radius: 4px;
+}
+
 
 footer {
 	display: none !important;
