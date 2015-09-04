@@ -55,6 +55,7 @@ footer {
 }
 
 svg {
-	width: 256px !important;
-	height: 256px !important;
+	width: 200px !important;
+	height: 200px !important;
+	display: none;
 }
