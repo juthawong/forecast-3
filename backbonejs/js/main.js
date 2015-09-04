@@ -1,27 +1,16 @@
 // console.log('main logic is ready...');
 
-// (function($){
-//   // Object declarations goes here
-//   $(document).ready(function () {
-//     // Start application code goes here
-//     var now = new Date();
+var baseUrl;
 
-//     // datetime background
-//     if (now.getHours() > 6 && now.getHours() < 20) {
-//       $('body').addClass('clear-sky-day');
-//       $('#moon').hide();
-//       $('#sun').show();
-//     } else {
-//       $('body').addClass('clear-sky-night');
-//       $('#sun').hide();
-//       $('#moon').show();
-//     }
-//   });
-// })(jQuery);
+if (window.location.hostname == 'localhost') {
+    baseUrl = '/~ash/forecast/backbonejs/js';
+} else {
+    baseUrl = '/forecast/backbonejs/js';
+}
+
 /*global requirejs */
-
 requirejs.config({
-    baseUrl: '/~ash/forecast/backbonejs/js',
+    baseUrl: baseUrl,
     paths: {
         'backbone': 'lib/backbone',
         'backbone-layoutmanager': 'lib/backbone.layoutmanager',
