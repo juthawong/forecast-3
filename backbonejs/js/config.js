@@ -7,7 +7,7 @@ define(['env'], function(env) {
     var configurations = {
         github: {
             apiUrl: 'http://api.openweathermap.org/data/2.5/',
-            frontUrl: 'http://localhost/~ash/forecast/backbonejs/index.html'
+            frontUrl: 'http://lukasz-jakub-adamczuk.github.io/forecast/backbonejs/index.html'
         },
         localhost: {
             apiUrl: 'http://api.openweathermap.org/data/2.5/',

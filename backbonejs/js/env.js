@@ -4,6 +4,10 @@ define([], function() {
 
     'use strict';
 
-    return 'localhost';
+    if (window.location.hostname == 'localhost') {
+    	return 'localhost';
+    } else {
+    	return 'github';
+    }
 
 });
