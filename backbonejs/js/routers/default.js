@@ -3,6 +3,7 @@
 define([
     'backbone',
     'underscore',
+    'extensions/router-query-manager',
 
     'views/app',
     'views/dashboard',
@@ -11,10 +12,17 @@ define([
 
     'collections/weather',
 
-    'views/cityWeather'
+    'views/cityWeather',
+
+    'views/icon/sun',
+    'views/icon/cloud'
+
+    // router plugins
+    // 'backbone-queryparams',
 ], function(
     Backbone,
     _,
+    QueryManager,
 
     appView,
     DashboardView,
@@ -23,7 +31,10 @@ define([
 
     WeatherCollection,
 
-    CityWeatherView
+    CityWeatherView,
+
+    SunIconView,
+    CloudIconView
 ) {
     'use strict';
 
@@ -40,8 +51,9 @@ define([
         routes: {
             '': 'dashboard',
 
-            'city': 'cityWeather'
-            // 'news/:id': 'newsEdit'
+            // 'weather/:city': 'cityWeather'
+            'weather': 'cityWeather'
+            // 'forecast/:city': 'cityForecast'
         },
 
         dashboard: function() {
@@ -52,19 +64,62 @@ define([
         },
 
         cityWeather: function() {
-            var weatherCollection,
-                cityWeatherView;
+            var weatherModel,
+                weatherCollection,
+                cityWeatherView,
+                weatherIconView,
+                paramsManager,
+                params,
+                city;
 
-            weatherCollection = new WeatherCollection();
+            console.log(city);
+
+            city = $('#city-name').val() || 'London';
+
+            params = {
+                q: city,
+                units: 'metric'
+            };
+
+            console.log('inside router');
+
+            
+            // paramsManager = new QueryManager(params);
+
+            // weatherCollection = new WeatherCollection();
+            weatherModel = new WeatherModel();
 
             cityWeatherView = new CityWeatherView({
-                collection: weatherCollection
+                // collection: weatherCollection,
+                model: weatherModel
             });
 
+            cityWeatherView.on('search', function() {
+                params.q = $('#city-name').val();
+
+                weatherModel.fetch({
+                    data: params
+                });
+            });
+
+
+            weatherIconView = new SunIconView();
+
             appView.setView(MAIN_SELECTOR, cityWeatherView);
+            // appView.setView(MAIN_SELECTOR, sun);
+            cityWeatherView.setView('.weather-icon', weatherIconView);
             cityWeatherView.render();
 
-            weatherCollection.fetch();
+            // cityWeatherView.changeBackground();
+
+            weatherIconView.render();
+
+            // cityWeatherView.changeBackground();
+
+            // weatherCollection.fetch();
+            weatherModel.fetch({
+                data: params
+            });
         }
 
     });

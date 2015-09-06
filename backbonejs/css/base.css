@@ -2,14 +2,16 @@ body {
 	font: normal 100% 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
 	background: #aaa;
 	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
 }
 
 /* backgrounds */
 .clear-sky-day {
-	background: url(../images/clear-sky-day.jpg) 50% 50% no-repeat;
+	background-image: url(../images/clear-sky-day.jpg);
 }
 .clear-sky-night {
-	background: url(../images/clear-sky-night.jpg) 50% 50% no-repeat;
+	background-image: url(../images/clear-sky-night.jpg);
 }
 
 
@@ -19,17 +21,38 @@ body {
 #forecast p[class^=icon] {
 	font-size: 5em;
 }
+#city-name {
+	background: transparent;
+	border-color: #444;
+	color: #ccc;
+	margin: 1em;
+}
 
-.main-description {
+/* params */
+.param-name {
 	font-size: 2em;
 }
+.param-value {
+	font-size: 3em;
+}
+.param-unit {
+	font-size: 2em;
+}
+.param-value:before {
+	content: '';
+	display: block;
+}
+
+.main-description {
+	font-size: 4em;
+}
 .main-temp {
-	font-size: 10em;
+	font-size: 12em;
 }
 
 /* box */
 .box {
-	background-color: rgba(0, 0, 0, .25);
+	/*background-color: rgba(0, 0, 0, .25);*/
 	padding: .5em;
 }
 h2 {
@@ -49,13 +72,38 @@ h2 {
 	border-radius: 4px;
 }
 
+.night {
+	color: #aaa;
+}
+.night .main-temp,
+.night .param-value {
+	color: #ddd;
+}
+
+.day .param {
+	/*text-shadow: 1px #fff 0 1px 0;*/
+}
+.night .param {
+	/*text-shadow: #fff 0 1px 1px;*/
+	/*color: #aaa;*/
+}
+
+header {
+	/*padding: 1em;*/
+}
+
 
 footer {
 	display: none !important;
 }
 
+.weather-icon svg {
+	width: 300px;
+	height: 300px;
+}
+
 svg {
-	width: 200px !important;
-	height: 200px !important;
-	display: none;
+	/*width: 200px !important;*/
+	/*height: 200px !important;*/
+	/*display: none;*/
 }
