@@ -37,14 +37,19 @@ define([
 
             // this.model.clear();
             this.trigger('search', this);
+
+            // this.changeBackground();
         },
         changeBackground: function() {
-            if (this.now > this.model.getTime('sunrise') && this.now < this.model.getTime('sunset')) {
+            console.log('changeBackground');
+            // console.log(this.now);
+            if (this.now >= this.model.getTime('sunrise') && this.now < this.model.getTime('sunset')) {
+                console.log('day');
                 $('body').removeClass('night clear-sky-night').addClass('day clear-sky-day');
-                console.log('day from view');
-            } else {
+            }
+            if (this.now < this.model.getTime('sunrise') || this.now >= this.model.getTime('sunset')) {
+                console.log('night');
                 $('body').removeClass('day clear-sky-day').addClass('night clear-sky-night');
-                console.log('night from view');
             }
         },
         /*keyup: function(event) {

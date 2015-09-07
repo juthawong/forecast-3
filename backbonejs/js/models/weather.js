@@ -27,6 +27,13 @@ define([
         initialize: function() {
             console.log('initialize model');
         },
+        getWeatherIconCode: function() {
+            var weather = this.get('weather');
+
+            if (weather) {
+                return weather[0].icon;
+            }
+        },
         getTemp: function(format) {
             var main,
                 temp;
