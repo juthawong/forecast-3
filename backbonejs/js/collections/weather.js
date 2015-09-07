@@ -23,13 +23,13 @@ define([
     'use strict';
 
     var WeatherCollection = Backbone.Collection.extend({
-        baseUrl: config.apiUrl + 'weather?q=Krakow&units=metric',
+        baseUrl: config.apiUrl + 'weather',
         // baseUrl: 'http://api.openweathermap.org/data/2.5/' + '/weather?q=Krakow&units=metric',
         model: WeatherModel
     });
 
     // Cocktail.mixin(WeatherCollection, hateoas, collectionQuery);
-    Cocktail.mixin(WeatherCollection, hateoas);
+    Cocktail.mixin(WeatherCollection, hateoas, collectionQuery);
 
     return WeatherCollection;
 

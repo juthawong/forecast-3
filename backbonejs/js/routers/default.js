@@ -3,6 +3,7 @@
 define([
     'backbone',
     'underscore',
+    'extensions/router-query-manager',
 
     'views/app',
     'views/dashboard',
@@ -11,10 +12,22 @@ define([
 
     'collections/weather',
 
-    'views/cityWeather'
+    'views/cityWeather',
+
+    'views/weatherIcon',
+    'views/icon/sun',
+    'views/icon/moon',
+    'views/icon/cloud',
+    'views/icon/cloudSun',
+    'views/icon/cloudMoon',
+    'views/icon/cloudRain'
+
+    // router plugins
+    // 'backbone-queryparams',
 ], function(
     Backbone,
     _,
+    QueryManager,
 
     appView,
     DashboardView,
@@ -23,7 +36,15 @@ define([
 
     WeatherCollection,
 
-    CityWeatherView
+    CityWeatherView,
+
+    WeatherIconView,
+    SunIconView,
+    MoonIconView,
+    CloudIconView,
+    CloudSunIconView,
+    CloudMoonIconView,
+    CloudRainIconView
 ) {
     'use strict';
 
@@ -40,8 +61,9 @@ define([
         routes: {
             '': 'dashboard',
 
-            'city': 'cityWeather'
-            // 'news/:id': 'newsEdit'
+            // 'weather/:city': 'cityWeather'
+            'weather': 'cityWeather'
+            // 'forecast/:city': 'cityForecast'
         },
 
         dashboard: function() {
@@ -52,19 +74,105 @@ define([
         },
 
         cityWeather: function() {
-            var weatherCollection,
-                cityWeatherView;
+            var weatherModel,
+                weatherCollection,
+                cityWeatherView,
+                weatherIconView,
+                paramsManager,
+                iconView,
+                params,
+                city,
+                icon;
 
-            weatherCollection = new WeatherCollection();
+            console.log(city);
+
+            city = $('#city-name').val() || 'Krakow';
+
+            params = {
+                q: city,
+                units: 'metric'
+            };
+
+            console.log('inside router');
+
+            
+            // paramsManager = new QueryManager(params);
+
+            // weatherCollection = new WeatherCollection();
+            weatherModel = new WeatherModel();
 
             cityWeatherView = new CityWeatherView({
-                collection: weatherCollection
+                // collection: weatherCollection,
+                model: weatherModel
             });
 
-            appView.setView(MAIN_SELECTOR, cityWeatherView);
-            cityWeatherView.render();
+            cityWeatherView.on('search', function() {
+                params.q = $('#city-name').val();
 
-            weatherCollection.fetch();
+                weatherModel.fetch({
+                    data: params
+                }).then(function() {
+                    console.log(weatherModel.getWeatherIconCode());
+
+                    weatherIconView = new WeatherIconView({
+                        icon: weatherModel.getWeatherIconCode()
+                    });
+
+                    cityWeatherView.setView('.weather-icon', weatherIconView.icon);
+
+                    // cityWeatherView.changeBackground()
+
+                    weatherIconView.render();
+
+                    cityWeatherView.render();
+                });
+            });
+
+            // var iconCode = Math.round(Math.random()) ? '01d' : '02d';
+
+
+            
+
+            // console.log(weatherIconView.icon);
+
+            // icon = weatherIconView.icon;
+
+
+            // iconView = new icon();
+
+            appView.setView(MAIN_SELECTOR, cityWeatherView);
+            // appView.setView(MAIN_SELECTOR, sun);
+            // cityWeatherView.setView('.weather-icon', weatherIconView.icon);
+            
+
+            // cityWeatherView.changeBackground();
+
+            // weatherCollection.fetch();
+            weatherModel.fetch({
+                data: params
+            }).then(function() {
+                console.log(weatherModel.getWeatherIconCode());
+
+                // weatherIconView = new WeatherIconView();
+
+                weatherIconView = new WeatherIconView({
+                    icon: weatherModel.getWeatherIconCode()
+                });
+
+                cityWeatherView.setView('.weather-icon', weatherIconView.icon);
+
+                // cityWeatherView.changeBackground()
+
+                weatherIconView.render();
+
+                cityWeatherView.render();
+            });
+
+
+
+            // cityWeatherView.changeBackground();
+
+            // weatherIconView.render();
         }
 
     });

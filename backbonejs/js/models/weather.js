@@ -19,19 +19,56 @@ define([
     'use strict';
 
     var WeatherModel = Backbone.Model.extend({
-        // baseUrl: config.apiUrl + '/weather?q=London,uk',
-        baseUrl: 'http://api.openweathermap.org/data/2.5/' + '/weather?q=Krakow&units=metric',
+        baseUrl: config.apiUrl + 'weather',
+        url: config.apiUrl + 'weather',
         defaults: {
-            description: 'this is default description',
-            today: function() {
-                var date = new Date();
+            // ...
+        },
+        initialize: function() {
+            console.log('initialize model');
+        },
+        getWeatherIconCode: function() {
+            var weather = this.get('weather');
 
-                return date.toJSON().substr(0, 10);
+            if (weather) {
+                return weather[0].icon;
+            }
+        },
+        getTemp: function(format) {
+            var main,
+                temp;
+
+            main = this.get('main');
+            if (main) {
+                temp = main .temp;
+            }
+
+            if (format === 'round') {
+                return Math.round(temp);
+            }
+
+            return temp;
+        },
+        getTime: function(period) {
+            var sys
+
+            sys = this.get('sys');
+            if (period === 'dt') {
+                return new Date(this.get('dt') * 1000);
+            }
+            if (sys) {
+                if (period === 'sunrise') {
+                    return new Date(sys.sunrise * 1000);
+                }
+                if (period === 'sunset') {
+                    return new Date(sys.sunset * 1000);
+                }
             }
         }
     });
 
-    Cocktail.mixin(WeatherModel, hateoas);
+    // Cocktail.mixin(WeatherModel, hateoas);
+    Cocktail.mixin(WeatherModel);
 
     return WeatherModel;
 });
