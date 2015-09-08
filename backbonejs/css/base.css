@@ -7,13 +7,54 @@ body {
 }
 
 /* backgrounds */
-.clear-sky-day {
+.bg-01d {
 	background-image: url(../images/clear-sky-day.jpg);
 }
-.clear-sky-night {
+.bg-01n {
 	background-image: url(../images/clear-sky-night.jpg);
 }
-
+.bg-02d {
+	background-image: url(../images/cloudy-sky-day.jpg);
+}
+.bg-02n {
+	background-image: url(../images/cloudy-sky-night.jpg);
+}
+.bg-03d {
+	/*background-image: url(../images/cloudy-sky-day.jpg);*/
+}
+.bg-03n {
+	/*background-image: url(../images/cloudy-sky-night.jpg);*/
+}
+.bg-04d {
+	/*background-image: url(../images/cloudy-sky-day.jpg);*/
+}
+.bg-04n {
+	/*background-image: url(../images/cloudy-sky-night.jpg);*/
+}
+.bg-09d {
+	/*background-image: url(../images/cloudy-sky-day.jpg);*/
+}
+.bg-09n {
+	/*background-image: url(../images/cloudy-sky-night.jpg);*/
+}
+.bg-10d {
+	/*background-image: url(../images/cloudy-sky-day.jpg);*/
+}
+.bg-10n {
+	/*background-image: url(../images/cloudy-sky-night.jpg);*/
+}
+.bg-11d {
+	background-image: url(../images/lightning-sky-day.jpg);
+}
+.bg-11n {
+	background-image: url(../images/lightning-sky-night.jpg);
+}
+.bg-50d {
+	background-image: url(../images/fog-day.jpg);
+}
+.bg-50n {
+	background-image: url(../images/fog-night.jpg);
+}
 
 #forecast {
 	font-family: 'Open Sans';

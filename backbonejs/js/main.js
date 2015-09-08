@@ -1,9 +1,3 @@
-// console.log('main logic is ready...');
-
-// (function($){
-//   // Object declarations goes here
-
-// })(jQuery);
 /*global requirejs */
 
 requirejs.config({
