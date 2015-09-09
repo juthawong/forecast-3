@@ -17,6 +17,7 @@ define([
     var CityWeatherView = Backbone.Layout.extend({
         template: Handlebars.compile(cityWeatherTemplate),
         now: new Date(),
+        dayTime: null,
         events: {
             'submit form': function() {
                 this.searchCity();
@@ -24,69 +25,46 @@ define([
             }
         },
         initialize: function(options) {
-            this.listenTo(this.model, 'sync', this.render);
-
-            // $(document).on('keyup', this.keyup.bind(this));
-
-            // console.log(this.model.getTime('dt'));
-
-            
+            this.listenTo(this.model, 'sync', this.render);            
         },
         searchCity: function() {
-            console.log('searchCity func');
-
-            // this.model.clear();
             this.trigger('search', this);
-
-            // this.changeBackground();
         },
-        changeBackground: function() {
-            console.log('changeBackground');
-            // console.log(this.now);
-            if (this.now >= this.model.getTime('sunrise') && this.now < this.model.getTime('sunset')) {
-                console.log('day');
-                $('body').removeClass('night clear-sky-night').addClass('day clear-sky-day');
-            }
-            if (this.now < this.model.getTime('sunrise') || this.now >= this.model.getTime('sunset')) {
-                console.log('night');
-                $('body').removeClass('day clear-sky-day').addClass('night clear-sky-night');
+        setDayTime: function() {
+            // basically weather icon delivers this info as 10d or 10n
+            if (this.dayTime == null) {
+                if (this.now >= this.model.getTime('sunrise') && this.now < this.model.getTime('sunset')) {
+                    this.dayTime = 'day';
+                }
+                if (this.now < this.model.getTime('sunrise') || this.now >= this.model.getTime('sunset')) {
+                    this.dayTime = 'night';
+                }
             }
         },
-        /*keyup: function(event) {
-            // enter
-            if (event.keyCode === 13) {
-                var city = $('#city-name').val();
-
-                this.trigger('search', function() {
-                    // 
-                });
-
+        setBackground: function() {
+            if (this.dayTime) {
+                if (this.dayTime == 'day') {
+                    $('body').attr('class', 'day bg-' + this.model.getWeatherIconCode());
+                }
+                if (this.dayTime == 'night') {
+                    $('body').attr('class', 'night bg-' + this.model.getWeatherIconCode());
+                }
             }
-
-            return false;
-        },*/
+        },
         serialize: function() {
             var data = this.model.toJSON();
 
-            console.log('serialize view');
-
-            // console.log(data[0]);
             data.temp = this.model.getTemp('round');
-
-            // window['now'] = this.model.getTime('dt');
-            // window['sunrise'] = this.model.getTime('sunrise');
-            // window['sunset'] = this.model.getTime('sunset');
-
             data.sunrise = this.model.getTime('sunrise');
             data.sunset = this.model.getTime('sunset');
+
+            data.dayTime = this.dayTime;
             
-            // return {data: data};
             return data;
         },
         afterRender: function () {
-            console.log("After render");
-            // set right background
-            this.changeBackground();
+            this.setDayTime();
+            this.setBackground();
         }
     });
 

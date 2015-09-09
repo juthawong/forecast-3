@@ -5,38 +5,88 @@ body {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 }
+* {
+	/*box-sizing: border-box;*/
+}
 
 /* backgrounds */
-.clear-sky-day {
+.bg-01d {
 	background-image: url(../images/clear-sky-day.jpg);
 }
-.clear-sky-night {
+.bg-01n {
 	background-image: url(../images/clear-sky-night.jpg);
 }
-
+.bg-02d {
+	background-image: url(../images/few-clouds-day.jpg);
+}
+.bg-02n {
+	background-image: url(../images/few-clouds-night.jpg);
+}
+.bg-03d {
+	background-image: url(../images/scattered-clouds-day.jpg);
+}
+.bg-03n {
+	background-image: url(../images/scattered-clouds-night.jpg);
+}
+.bg-04d {
+	background-image: url(../images/broken-clouds-day.jpg);
+}
+.bg-04n {
+	background-image: url(../images/broken-clouds-night.jpg);
+}
+.bg-09d {
+	background-image: url(../images/shower-rain-day.jpg);
+}
+.bg-09n {
+	background-image: url(../images/shower-rain-night.jpg);
+}
+.bg-10d {
+	background-image: url(../images/rain-day.jpg);
+}
+.bg-10n {
+	background-image: url(../images/rain-night.jpg);
+}
+.bg-11d {
+	background-image: url(../images/lightning-sky-day.jpg);
+}
+.bg-11n {
+	background-image: url(../images/lightning-sky-night.jpg);
+}
+.bg-13d {
+	background-image: url(../images/snow-day.jpg);
+}
+.bg-13n {
+	background-image: url(../images/snow-night.jpg);
+}
+.bg-50d {
+	background-image: url(../images/mist-day.jpg);
+}
+.bg-50n {
+	background-image: url(../images/mist-night.jpg);
+}
 
 #forecast {
 	font-family: 'Open Sans';
 }
 #forecast p[class^=icon] {
-	font-size: 5em;
+	/*font-size: 5em;*/
 }
 #city-name {
-	background: transparent;
-	border-color: #444;
-	color: #ccc;
-	margin: 1em;
+	/*background: transparent;*/
+	/*border-color: #444;*/
+	/*color: #ccc;*/
+	/*margin: 1em;*/
 }
 
 /* params */
 .param-name {
-	font-size: 2em;
+	font-size: 4vmin;
 }
 .param-value {
-	font-size: 3em;
+	font-size: 8vmin;
 }
 .param-unit {
-	font-size: 2em;
+	font-size: 4vmin;
 }
 .param-value:before {
 	content: '';
@@ -44,16 +94,19 @@ body {
 }
 
 .main-description {
-	font-size: 4em;
+	font-size: 5vmin;
 }
 .main-temp {
-	font-size: 12em;
+	font-size: 25vmin;
+	/*line-height: .75;*/
 }
 
 /* box */
 .box {
 	/*background-color: rgba(0, 0, 0, .25);*/
-	padding: .5em;
+	background-color: rgba(240, 240, 240, .35);
+	/*padding: .5em;*/
+	/*margin: .5em 0;*/
 }
 h2 {
 	font-size: 4em;
@@ -106,4 +159,94 @@ svg {
 	/*width: 200px !important;*/
 	/*height: 200px !important;*/
 	/*display: none;*/
+}
+#config-box {
+	/*background: red;*/
+}
+#main-box {
+	/*background: green;*/
+}
+#sub-box {
+	/*background: blue;*/
+}
+
+.flex-row {
+	display: flex;
+	justify-content: space-around;
+	/*margin: 5vw;*/
+	/*flex-wrap: wrap;*/
+	align-items: center;
+}
+.flex-box {
+	display: _flex;
+}
+.box {
+	/*margin: 5vmin;*/
+	/*background: #aaa;*/
+}
+
+
+@media only screen 
+/*and (min-device-width: 375px) */
+/*and (max-device-width: 667px) */
+/*and (-webkit-min-device-pixel-ratio: 2)*/
+and (orientation: portrait) {
+	.flex-row {
+		flex-wrap: wrap;
+	}
+	#config-box {
+		height: 10vh;
+		margin: 5vh;
+	}
+	#main-box,
+	#sub-box {
+		width: 90vw;
+		height: 35vh;
+		margin: 0 5vh 5vh;
+	}
+	#main-box {
+		/*height: 40vh;*/
+	}
+	#sub-box {
+		/*height: 50vh;*/
+	}
+	.weather-icon svg {
+		width: 400px;
+		height: 400px;
+	}
+}
+@media only screen 
+/*and (min-device-width: 375px) */
+/*and (max-device-width: 667px) */
+/*and (-webkit-min-device-pixel-ratio: 2)*/
+and (orientation: landscape) { 
+	#config-box {
+		height: 20vh;
+		margin: 5vh 5vh 0;
+	}
+	#main-box,
+	#sub-box {
+		width: 50vw;
+		height: 65vh;
+		margin: 5vh;
+	}
+	#main-box {
+		margin-right: 2.5vh;
+	}
+	#sub-box {
+		margin-left: 2.5vh;
+	}
+
+	.main-temp {
+		/*font-size: 20vmin;*/
+	}
+	.main-description {
+		/*font-size: 5vmin;*/
+	}
+
+	section.box {
+		/*margin: 2vh 0;*/
+		
+		/*background: #aaa;*/
+	}
 }
