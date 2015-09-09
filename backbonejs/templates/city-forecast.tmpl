@@ -6,14 +6,14 @@
 			</form>
 		</header>
 		<section id="main" class="row">
-			<div class="col-xs-6 col-md-6">
+			<div class="_col-xs-6 _col-md-6">
 				<div class="box">
 					<p class="weather-icon"></p>
 				</div>
 			</div>
 			<!-- <div class="clearfix visible-xs-block"></div> -->
 			{{#each list}}
-			<div class="col-xs-2 col-md-2">
+			<div class="_col-xs-2 _col-md-2">
 				<div class="box text-center">
 					<p class="col-xs-2 param">
 						<span class="param-name">Temp.</span>
@@ -25,8 +25,8 @@
 			{{/each}}
 			<div class="col-xs-6 col-md-6">
 				<div class="box text-center">
-					<p class="main-description">{{weather.0.description}}</p>
-					<p class="main-temp">{{temp}}&deg;</p>
+					<p class="main-description col-xs-12 hidden-xs-12">{{weather.0.description}}</p>
+					<p class="main-temp col-xs-12 hidden-xs-12">{{temp}}&deg;</p>
 					<!-- <p>{{weather.0.icon}}</p> -->
 					<div class="row">
 						<p class="col-xs-6 param">
