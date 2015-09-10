@@ -1,5 +1,14 @@
-/*global requirejs */
+// console.log('main logic is ready...');
 
+var baseUrl;
+
+if (window.location.hostname == 'localhost') {
+    baseUrl = '/~ash/forecast/backbonejs/js';
+} else {
+    baseUrl = '/forecast/backbonejs/js';
+}
+
+/*global requirejs */
 requirejs.config({
     baseUrl: '/~ash/forecast/backbonejs/js',
     paths: {

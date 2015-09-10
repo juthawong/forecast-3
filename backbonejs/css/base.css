@@ -78,6 +78,14 @@ body {
 	/*margin: 1em;*/
 }
 
+/* main values */
+.main-description {
+	font-size: 5vmin;
+}
+.main-temp {
+	font-size: 25vmin;
+}
+
 /* params */
 .param-name {
 	font-size: 4vmin;
@@ -91,14 +99,6 @@ body {
 .param-value:before {
 	content: '';
 	display: block;
-}
-
-.main-description {
-	font-size: 5vmin;
-}
-.main-temp {
-	font-size: 25vmin;
-	/*line-height: .75;*/
 }
 
 /* box */
@@ -211,8 +211,11 @@ and (orientation: portrait) {
 		/*height: 50vh;*/
 	}
 	.weather-icon svg {
-		width: 400px;
-		height: 400px;
+		width: 25vmin;
+		height: 25vmin;
+	}
+	.main-temp {
+		font-size: 20vmin;
 	}
 }
 @media only screen 
