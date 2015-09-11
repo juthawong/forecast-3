@@ -83,7 +83,7 @@ define([
                 weatherCollection,
                 cityWeatherView,
                 weatherIconView,
-                paramsManager,
+                // paramsManager,
                 iconView,
                 params,
                 city,
@@ -139,7 +139,8 @@ define([
             var forecastModel,
                 cityForecastView,
                 forecastIconView,
-                paramsManager,
+                weatherIconView,
+                // paramsManager,
                 iconView,
                 params,
                 city,
@@ -165,14 +166,16 @@ define([
                 forecastModel.fetch({
                     data: params
                 }).then(function() {
-                    // weatherIconView = new WeatherIconView({
-                    //     icon: forecastModel.getWeatherIconCode()
-                    // });
+                    weatherIconView = new WeatherIconView({
+                        icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
+                    });
 
-                    // cityForecastView.setView('.weather-icon', weatherIconView.icon);
+                    // console.log(forecastModel.get('list')[0].weather);
+
+                    cityForecastView.setView('.weather-icon', weatherIconView.icon);
 
                     cityForecastView.render();
-                    // weatherIconView.render();
+                    weatherIconView.render();
                 });
             });
 
@@ -181,14 +184,14 @@ define([
             forecastModel.fetch({
                 data: params
             }).then(function() {
-                // weatherIconView = new WeatherIconView({
-                //     icon: forecastModel.getWeatherIconCode()
-                // });
+                weatherIconView = new WeatherIconView({
+                    icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
+                });
 
-                // cityForecastView.setView('.weather-icon', weatherIconView.icon);
+                cityForecastView.setView('.weather-icon', weatherIconView.icon);
 
                 cityForecastView.render();
-                // weatherIconView.render();
+                weatherIconView.render();
             });
         }
 

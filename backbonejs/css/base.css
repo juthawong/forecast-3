@@ -6,7 +6,7 @@ body {
 	background-repeat: no-repeat;
 }
 * {
-	/*box-sizing: border-box;*/
+	box-sizing: border-box;
 }
 
 /* backgrounds */
@@ -177,12 +177,23 @@ svg {
 	/*flex-wrap: wrap;*/
 	align-items: center;
 }
+.flex-row-between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 .flex-box {
 	display: _flex;
 }
 .box {
 	/*margin: 5vmin;*/
 	/*background: #aaa;*/
+}
+
+
+/* icomoon */
+h3 {
+	font-size: 5em;
 }
 
 
@@ -195,20 +206,33 @@ and (orientation: portrait) {
 		flex-wrap: wrap;
 	}
 	#config-box {
+		/*width: 95vw;*/
 		height: 10vh;
-		margin: 5vh;
+		margin: 2.5vmin;
 	}
 	#main-box,
 	#sub-box {
-		width: 90vw;
-		height: 35vh;
-		margin: 0 5vh 5vh;
+		
+		
+		/*margin: 10vh;*/
 	}
 	#main-box {
+		width: 95vw;
+		height: 40vh;
 		/*height: 40vh;*/
+		margin: 0 2.5vw 2.5vw;
 	}
 	#sub-box {
+		width: 95vw;
 		/*height: 50vh;*/
+		/*width: 100vw;*/
+		/*width: 95vw;*/
+		/*margin: 2.5vh;*/
+	}
+
+	.forecast-box {
+		width: 30vw;
+		height: 40vh;
 	}
 	.weather-icon svg {
 		width: 25vmin;
@@ -240,16 +264,16 @@ and (orientation: landscape) {
 		margin-left: 2.5vh;
 	}
 
+	.forecast-box {
+		width: 30vw;
+		height: 65vh;
+	}
+	.weather-icon svg {
+		width: 25vmin;
+		height: 25vmin;
+	}
 	.main-temp {
-		/*font-size: 20vmin;*/
+		font-size: 20vmin;
 	}
-	.main-description {
-		/*font-size: 5vmin;*/
-	}
-
-	section.box {
-		/*margin: 2vh 0;*/
-		
-		/*background: #aaa;*/
-	}
+	
 }

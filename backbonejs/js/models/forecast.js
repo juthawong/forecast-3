@@ -27,20 +27,24 @@ define([
         initialize: function() {
             console.log('initialize model');
         },
-        getWeatherIconCode: function() {
-            var weather = this.get('weather');
-
+        getWeatherIconCode: function(weather) {
             if (weather) {
                 return weather[0].icon;
+            } else {
+                this.model.weather[0].icon;
             }
         },
-        getTemp: function(format) {
+        getTemp: function(format, weather) {
             var main,
                 temp;
 
-            main = this.get('main');
+            if (weather) {
+                main = weather.main;
+            } else {
+                main = this.get('main');
+            }
             if (main) {
-                temp = main .temp;
+                temp = main.temp;
             }
 
             if (format === 'round') {

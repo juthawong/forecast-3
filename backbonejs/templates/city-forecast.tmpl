@@ -1,67 +1,38 @@
-		<header>
-			<!-- <h1>{{name}}</h1> -->
-			<form class="form-inline" href="#weather">
-				<input id="city-name" class="input-lg form-control" value="{{city.name}}" placeholder="city name">
-				<input type="submit" class="btn btn-default btn-lg"value="Search">
+		<header id="config-box" class="flex-row box">
+			<!-- <div class="nav-bar"> -->
+			<form id="search-form" class="_flex-box form-inline" href="#weather">
+				<div class="input-group input-group-lg">
+					<input id="city-name" type="text" class="form-control" value="{{name}}" placeholder="Search for city...">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default" type="button">Go!</button>
+					</span>
+				</div>
 			</form>
+			<!-- </div> -->
 		</header>
-		<section id="main" class="row">
-			<div class="_col-xs-6 _col-md-6">
-				<div class="box">
-					<p class="weather-icon"></p>
-				</div>
-			</div>
-			<!-- <div class="clearfix visible-xs-block"></div> -->
-			{{#each list}}
-			<div class="_col-xs-2 _col-md-2">
-				<div class="box text-center">
-					<p class="col-xs-2 param">
-						<span class="param-name">Temp.</span>
-						<span class="param-value">{{main.temp}}</span>
-						<span class="param-unit">&deg;C</span>
-					</p>
-				</div>
-			</div>
-			{{/each}}
-			<div class="col-xs-6 col-md-6">
-				<div class="box text-center">
-					<p class="main-description col-xs-12 hidden-xs-12">{{weather.0.description}}</p>
-					<p class="main-temp col-xs-12 hidden-xs-12">{{temp}}&deg;</p>
-					<!-- <p>{{weather.0.icon}}</p> -->
-					<div class="row">
-						<p class="col-xs-6 param">
-							<span class="param-name">Humidity</span>
-							<span class="param-value">{{main.humidity}}</span>
-							<span class="param-unit">%</span>
-						</p>
-						<p class="col-xs-6 param">
-							<span class="param-name">Pressure</span>
-							<span class="param-value">{{main.pressure}}</span>
-							<span class="param-unit">hPa</span>
-						</p>
-						<!-- <p class="col-xs-6 param">
-							<span class="param-name">Sunrise</span>
-							<span class="param-value">{{sunrise}}</span>
-						</p>
-						<p class="col-xs-6 param">
-							<span class="param-name">Sunset</span>
-							<span class="param-value">{{sunset}}</span>
-						</p> -->
+		<section class="flex-row _row">
+			<div id="main-box" class="flex-box box __col-xs-12 _col-sm-6">
+				<div class="text-center">
+					<div class="_row">
+						<p class="weather-icon"></p>
+						<p class="main-temp">{{temp}}&deg;</p>
 					</div>
-					<!-- <p class="param">Sunrise: <span>{{sys.sunrise}}</span></p> -->
-					<!-- <p class="param">Sunset: <span>{{sys.sunset}}</span></p> -->
+					<p class="main-description">{{list.0.weather.0.description}}</p>
+				</div>
+			</div>
+			<div id="sub-box" class="flex-box">
+				<div class="flex-row-between">
+				{{#each days}}
+					<div class="forecast-box flex-box box text-center">
+						<h2>{{day}}</h2>
+						<h3 class="{{icon}}"></h3>
+						<p class="param">
+							<!-- <span class="param-name">Temp</span> -->
+							<span class="param-value">{{temp}}</span>
+							<span class="param-unit">&deg;C</span>
+						</p>
+					</div>
+				{{/each}}
 				</div>
 			</div>
 		</section>
-		
-		<footer class="row">
-			<span class="pill">
-				<input type="text" class="input first" placeholder="type city"><!--
-				--><input type="button" class="button last" value="Check">
-			</span>
-
-			<span id="units" class="pill">
-				<span class="first active" data-unit="C">&deg;C</span><!--
-				--><span class="last" data-unit="F">&deg;F</span>
-			</span>
-		</footer>
