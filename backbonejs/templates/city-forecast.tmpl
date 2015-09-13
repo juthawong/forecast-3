@@ -2,7 +2,7 @@
 			<!-- <div class="nav-bar"> -->
 			<form id="search-form" class="_flex-box form-inline" href="#weather">
 				<div class="input-group input-group-lg">
-					<input id="city-name" type="text" class="form-control" value="{{name}}" placeholder="Search for city...">
+					<input id="city-name" type="text" class="form-control" value="{{city.name}}" placeholder="Search for city...">
 					<span class="input-group-btn">
 						<button type="submit" class="btn btn-default" type="button">Go!</button>
 					</span>
@@ -28,8 +28,8 @@
 						<h3 class="{{icon}}"></h3>
 						<p class="param">
 							<!-- <span class="param-name">Temp</span> -->
-							<span class="param-value">{{temp}}</span>
-							<span class="param-unit">&deg;C</span>
+							<span class="param-value">{{temp}}&deg;</span>
+							<!-- <span class="param-unit">&deg;C</span> -->
 						</p>
 					</div>
 				{{/each}}

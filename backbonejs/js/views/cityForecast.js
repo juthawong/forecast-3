@@ -73,12 +73,13 @@ define([
                 this.forecast = data['forecast'];
             }
             // console.log(data['forecast']);
-            var days = [
-                '2015-09-12',
-                '2015-09-13',
-                '2015-09-14'
-            ];
-            // console.log()
+            var today = Date.now();
+            var days = [];
+
+            for (var i = 1; i <= 3; i++) {
+                days.push(new Date(today + (i * 86400000)).toJSON().substring(0, 10));
+            }
+            
             data.days = [];
             for (var i = 0, len = days.length; i < len; i++) {
                 var params = this.findParamsForDate(days[i]);

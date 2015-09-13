@@ -170,8 +170,6 @@ define([
                         icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
                     });
 
-                    // console.log(forecastModel.get('list')[0].weather);
-
                     cityForecastView.setView('.weather-icon', weatherIconView.icon);
 
                     cityForecastView.render();
