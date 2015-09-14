@@ -13,9 +13,13 @@
 		<section class="flex-row _row">
 			<div id="main-box" class="flex-box box __col-xs-12 _col-sm-6">
 				<div class="text-center">
-					<div class="_row">
-						<p class="weather-icon"></p>
-						<p class="main-temp">{{temp}}&deg;</p>
+					<div class="row">
+						<div class="col-xs-6">
+							<p class="weather-icon"></p>
+						</div>
+						<div class="col-xs-6">
+							<p class="main-temp">{{temp}}&deg;</p>
+						</div>
 					</div>
 					<p class="main-description">{{list.0.weather.0.description}}</p>
 				</div>

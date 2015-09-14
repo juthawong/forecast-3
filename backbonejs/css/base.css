@@ -101,16 +101,6 @@ body {
 	display: block;
 }
 
-/* box */
-.box {
-	/*background-color: rgba(0, 0, 0, .25);*/
-	background-color: rgba(240, 240, 240, .35);
-	/*padding: .5em;*/
-	/*margin: .5em 0;*/
-}
-h2 {
-	font-size: 4em;
-}
 .sub-day-temp,
 .sub-night-temp {
 	font-size: 3em;
@@ -124,6 +114,25 @@ h2 {
 	color: #ccc;
 	border-radius: 4px;
 }
+
+/* day */
+.day .box {
+	background-color: rgba(240, 240, 240, .35);
+}
+.day .main-temp {
+	color: #444;
+}
+.day .main-description {
+	color: #222;
+}
+
+/* night */
+.night .box {
+	background-color: rgba(0, 0, 0, .35);
+}
+
+
+
 
 .night {
 	color: #aaa;
@@ -191,9 +200,13 @@ svg {
 }
 
 
+h2 {
+	font-size: 3em;
+	text-transform: uppercase;
+}
 /* icomoon */
 h3 {
-	font-size: 5em;
+	font-size: 6em;
 }
 
 
@@ -206,40 +219,66 @@ and (orientation: portrait) {
 		flex-wrap: wrap;
 	}
 	#config-box {
-		/*width: 95vw;*/
 		height: 10vh;
-		margin: 2.5vmin;
+		margin: 2.5vh;
 	}
 	#main-box,
 	#sub-box {
-		
-		
-		/*margin: 10vh;*/
 	}
 	#main-box {
 		width: 95vw;
 		height: 40vh;
-		/*height: 40vh;*/
-		margin: 0 2.5vw 2.5vw;
+		margin: 0 2.5vh 2.5vh;
 	}
 	#sub-box {
 		width: 95vw;
-		/*height: 50vh;*/
-		/*width: 100vw;*/
-		/*width: 95vw;*/
-		/*margin: 2.5vh;*/
+		height: 40vh;
+		margin: 0 2.5vh 2.5vh;
+	}
+	#search-form {
+		margin: 2vmin;
 	}
 
+	.param-value {
+		font-size: 6vh;
+	}
+
+	/* boxes */
 	.forecast-box {
-		width: 30vw;
 		height: 40vh;
 	}
-	.weather-icon svg {
-		width: 25vmin;
-		height: 25vmin;
+	.forecast-box {
+		width: 50%;
+		margin: 0 2.5vh 0 0;
 	}
-	.main-temp {
-		font-size: 20vmin;
+	.forecast-box:last-child {
+		margin: 0;
+	}
+
+	/* weather */
+	.weather .weather-icon svg {
+		width: 40vmin;
+		height: 40vmin;
+	}
+	.weather .main-description {
+		font-size: 8vmin;
+	}
+	.weather .main-temp {
+		font-size: 25vmin;
+		line-height: 40vmin;
+	}
+
+	/* forecast */
+	.forecast .weather-icon svg {
+		width: 40vmin;
+		height: 40vmin;
+	}
+	.forecast .main-description {
+		font-size: 8vmin;
+	}
+	.forecast .main-temp {
+		font-size: 25vmin;
+		line-height: 40vmin;
 	}
 }
 @media only screen 
@@ -248,32 +287,63 @@ and (orientation: portrait) {
 /*and (-webkit-min-device-pixel-ratio: 2)*/
 and (orientation: landscape) { 
 	#config-box {
-		height: 20vh;
-		margin: 5vh 5vh 0;
+		height: 15vh;
+		margin: 2.5vh 2.5vh 0;
 	}
 	#main-box,
 	#sub-box {
 		width: 50vw;
-		height: 65vh;
-		margin: 5vh;
+		height: 77.5vh;
+		margin: 2.5vh;
 	}
 	#main-box {
-		margin-right: 2.5vh;
+		margin-right: 0vh;
 	}
 	#sub-box {
 		margin-left: 2.5vh;
 	}
 
+	#search-form {
+		margin: 2vmin;
+	}
+
+	/*.box */
 	.forecast-box {
 		width: 30vw;
-		height: 65vh;
+		height: 77.5vh;
+		margin-right: 2.5vh;
 	}
-	.weather-icon svg {
-		width: 25vmin;
-		height: 25vmin;
+
+	.forecast-box:last-child {
+		margin: 0;
 	}
-	.main-temp {
-		font-size: 20vmin;
-	}
+
 	
+	
+
+	/* weather */
+	.weather .weather-icon svg {
+		width: 20vw;
+		height: 20vw;
+	}
+	.weather .main-description {
+		font-size: 8vmin;
+	}
+	.weather .main-temp {
+		font-size: 20vmin;
+		line-height: 20vw;
+	}
+
+	/* forecast */
+	.forecast .weather-icon svg {
+		width: 20vw;
+		height: 20vw;
+	}
+	.weather .main-description {
+		font-size: 8vmin;
+	}
+	.forecast .main-temp {
+		font-size: 20vmin;
+		line-height: 20vw;
+	}
 }

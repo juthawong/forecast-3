@@ -18,6 +18,7 @@ define([
         template: Handlebars.compile(cityWeatherTemplate),
         now: new Date(),
         dayTime: null,
+        icon: null,
         events: {
             'submit form': function() {
                 this.searchCity();
@@ -42,13 +43,15 @@ define([
             }
         },
         setBackground: function() {
-            if (this.dayTime) {
-                if (this.dayTime == 'day') {
-                    $('body').attr('class', 'day bg-' + this.model.getWeatherIconCode());
-                }
-                if (this.dayTime == 'night') {
-                    $('body').attr('class', 'night bg-' + this.model.getWeatherIconCode());
-                }
+            console.log(this.icon);
+            if (this.icon) {
+                var classNames = [];
+
+                classNames.push('weather');
+                classNames.push(this.icon[2] === 'd' ? 'day' : 'night');
+                classNames.push('bg-' + this.icon);
+
+                $('body').attr('class', classNames.join(' '));
             }
         },
         serialize: function() {
@@ -59,6 +62,10 @@ define([
             data.sunset = this.model.getTime('sunset');
 
             data.dayTime = this.dayTime;
+
+            if (this.model) {
+                this.icon = this.model.getWeatherIconCode(this.model.weather);
+            }
             
             return data;
         },

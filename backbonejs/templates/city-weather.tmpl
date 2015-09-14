@@ -14,9 +14,10 @@
 			<div id="main-box" class="flex-box box __col-xs-12 _col-sm-6">
 				<div class="text-center">
 					<!-- <p class="main-description">{{weather.0.description}}</p> -->
-					<div class="_row">
-						<p class="weather-icon _col-xs-6 _visible-xs-6"></p>
+					<div class="row">
+						<p class="weather-icon col-xs-6"></p>
 						<!-- <p class="main-temp _col-xs-6 _visible-xs-6">{{temp}}&deg;</p> -->
+						<p class="main-temp col-xs-6">{{temp}}&deg;</p>
 					</div>
 					<p class="main-description">{{weather.0.description}}</p>
 				</div>
@@ -24,7 +25,7 @@
 			<div id="sub-box" class="flex-box box">
 				<div class="_box _row text-center">
 					<!-- <p class="main-description">{{weather.0.description}}</p> -->
-					<p class="main-temp">{{temp}}&deg;</p>
+					<!-- <p class="main-temp">{{temp}}&deg;</p> -->
 					<div class="row">
 						<p class="col-xs-6 param">
 							<span class="param-name">Humidity</span>
@@ -35,6 +36,18 @@
 							<span class="param-name">Pressure</span>
 							<span class="param-value">{{main.pressure}}</span>
 							<span class="param-unit">hPa</span>
+						</p>
+					</div>
+					<div class="row">
+						<p class="col-xs-6 param">
+							<span class="param-name">Wind</span>
+							<span class="param-value">{{wind.speed}}</span>
+							<span class="param-unit">km/h</span>
+						</p>
+						<p class="col-xs-6 param">
+							<span class="param-name">Clouds</span>
+							<span class="param-value">{{clouds.all}}</span>
+							<span class="param-unit">%</span>
 						</p>
 					</div>
 				</div>

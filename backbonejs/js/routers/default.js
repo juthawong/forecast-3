@@ -89,7 +89,7 @@ define([
                 city,
                 icon;
 
-            city = $('#city-name').val() || 'Krakow';
+            city = $('#city-name').val() || 'Doha';
 
             params = {
                 q: city,
@@ -147,6 +147,7 @@ define([
                 icon;
 
             city = $('#city-name').val() || 'Krakow';
+            city = $('#city-name').val() || 'Toronto';
 
             params = {
                 q: city,

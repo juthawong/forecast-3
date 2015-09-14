@@ -18,6 +18,7 @@ define([
         template: Handlebars.compile(cityForecastTemplate),
         now: new Date(),
         dayTime: null,
+        icon: null,
         forecast: null,
         events: {
             'submit form': function() {
@@ -43,15 +44,15 @@ define([
             }
         },
         setBackground: function() {
-            // if (this.dayTime) {
-            // console.log(this.model.getWeatherIconCode());.substring(2,3));
-                // if (this.dayTime == 'day') {
-                    $('body').attr('class', 'day bg-' + this.model.getWeatherIconCode(this.model.get('list')[0].weather));
-                // }
-                // if (this.dayTime == 'night') {
-                    // $('body').attr('class', 'night bg-' + this.model.getWeatherIconCode());
-                // }
-            // }
+            if (this.icon) {
+                var classNames = [];
+
+                classNames.push('forecast');
+                classNames.push(this.icon[2] === 'd' ? 'day' : 'night');
+                classNames.push('bg-' + this.icon);
+
+                $('body').attr('class', classNames.join(' '));
+            }
         },
         serialize: function() {
             var data = this.model.toJSON();
@@ -73,12 +74,20 @@ define([
                 this.forecast = data['forecast'];
             }
             // console.log(data['forecast']);
-            var today = Date.now();
-            var days = [];
+            // var today = Date.now();
+            // var days = [];
+            var days;
 
-            for (var i = 1; i <= 3; i++) {
-                days.push(new Date(today + (i * 86400000)).toJSON().substring(0, 10));
+            if ('keys' in Object) {
+                days = Object.keys(this.forecast).slice(1, 4);
             }
+
+            // for (var i = 1; i <= 3; i++) {
+            //     days.push(new Date(today + (i * 86400000)).toJSON().substring(0, 10));
+            // }
+
+            // console.log(days);
+            // console.log();
             
             data.days = [];
             for (var i = 0, len = days.length; i < len; i++) {
@@ -90,21 +99,15 @@ define([
                 data.days.push(params);
             }
 
-            // data.days.push(this.findTempForDate('2015-09-12'));
-            // data.days.push(this.findTempForDate('2015-09-13'));
-            // data.days.push(this.findTempForDate('2015-09-14'));
-
-            // var list = this.model.get('list');
-
-            // data.icon = this.model.getWeatherIconCode(this.model.get('list')[0].weather);
-            // console.log(this.model.get('list')[0]);
             if (this.model) {
                 data.temp = this.model.getTemp('round', this.model.get('list')[0]);
-            }
-            // data.sunrise = this.model.getTime('sunrise');
-            // data.sunset = this.model.getTime('sunset');
 
-            data.dayTime = this.dayTime;
+                if (this.icon === null) {
+                    this.icon = this.model.getWeatherIconCode(this.model.get('list')[0].weather);
+                }
+            }
+
+            // data.dayTime = this.dayTime;
             
             return data;
         },
