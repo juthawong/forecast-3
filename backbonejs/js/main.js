@@ -2,7 +2,7 @@
 
 var baseUrl;
 
-if (window.location.hostname == 'localhost') {
+if (window.location.hostname == 'localhost' || window.location.hostname == '192.168.1.100') {
     baseUrl = '/~ash/forecast/backbonejs/js';
 } else {
     baseUrl = '/forecast/backbonejs/js';

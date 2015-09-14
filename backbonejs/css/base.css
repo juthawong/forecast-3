@@ -1,6 +1,6 @@
 body {
 	font: normal 100% 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
-	background: #aaa;
+	background: #888;
 	background-size: cover;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
@@ -71,12 +71,6 @@ body {
 #forecast p[class^=icon] {
 	/*font-size: 5em;*/
 }
-#city-name {
-	/*background: transparent;*/
-	/*border-color: #444;*/
-	/*color: #ccc;*/
-	/*margin: 1em;*/
-}
 
 /* main values */
 .main-description {
@@ -116,6 +110,9 @@ body {
 }
 
 /* day */
+.day svg {
+	fill: #444;
+}
 .day .box {
 	background-color: rgba(240, 240, 240, .35);
 }
@@ -127,10 +124,18 @@ body {
 }
 
 /* night */
+.night svg {
+	fill: #ccc;
+}
 .night .box {
 	background-color: rgba(0, 0, 0, .35);
 }
-
+.night .main-temp {
+	color: #aaa;
+}
+.night .main-description {
+	color: #ccc;
+}
 
 
 
@@ -142,19 +147,6 @@ body {
 	color: #ddd;
 }
 
-.day .param {
-	/*text-shadow: 1px #fff 0 1px 0;*/
-}
-.night .param {
-	/*text-shadow: #fff 0 1px 1px;*/
-	/*color: #aaa;*/
-}
-
-header {
-	/*padding: 1em;*/
-}
-
-
 footer {
 	display: none !important;
 }
@@ -164,11 +156,6 @@ footer {
 	height: 300px;
 }
 
-svg {
-	/*width: 200px !important;*/
-	/*height: 200px !important;*/
-	/*display: none;*/
-}
 #config-box {
 	/*background: red;*/
 }
@@ -194,11 +181,6 @@ svg {
 .flex-box {
 	display: _flex;
 }
-.box {
-	/*margin: 5vmin;*/
-	/*background: #aaa;*/
-}
-
 
 h2 {
 	font-size: 3em;

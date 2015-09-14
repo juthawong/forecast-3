@@ -4,6 +4,7 @@ define([
     'backbone',
     'underscore',
     'extensions/router-query-manager',
+    'utils/universal',
 
     'views/app',
     'views/dashboard',
@@ -31,6 +32,7 @@ define([
     Backbone,
     _,
     QueryManager,
+    universalUtils,
 
     appView,
     DashboardView,
@@ -83,18 +85,18 @@ define([
                 weatherCollection,
                 cityWeatherView,
                 weatherIconView,
-                // paramsManager,
                 iconView,
+                promise,
+                coords,
                 params,
                 city,
                 icon;
-
-            city = $('#city-name').val() || 'Doha';
-
+            
             params = {
-                q: city,
                 units: 'metric'
             };
+
+            promise = universalUtils.getCurrentPosition();
 
             weatherModel = new WeatherModel();
 
@@ -121,17 +123,37 @@ define([
 
             appView.setView(MAIN_SELECTOR, cityWeatherView);
             
-            weatherModel.fetch({
-                data: params
-            }).then(function() {
-                weatherIconView = new WeatherIconView({
-                    icon: weatherModel.getWeatherIconCode()
+            promise.then(function(result) {
+                params.lat = result.latitude;
+                params.lon = result.longitude;
+
+                weatherModel.fetch({
+                    data: params
+                }).then(function() {
+                    weatherIconView = new WeatherIconView({
+                        icon: weatherModel.getWeatherIconCode()
+                    });
+
+                    cityWeatherView.setView('.weather-icon', weatherIconView.icon);
+
+                    cityWeatherView.render();
+                    weatherIconView.render();
                 });
+            }, function(err) {
+                params.q = $('#city-name').val();
 
-                cityWeatherView.setView('.weather-icon', weatherIconView.icon);
+                weatherModel.fetch({
+                    data: params
+                }).then(function() {
+                    weatherIconView = new WeatherIconView({
+                        icon: weatherModel.getWeatherIconCode()
+                    });
 
-                cityWeatherView.render();
-                weatherIconView.render();
+                    cityWeatherView.setView('.weather-icon', weatherIconView.icon);
+
+                    cityWeatherView.render();
+                    weatherIconView.render();
+                });
             });
         },
 
@@ -140,14 +162,13 @@ define([
                 cityForecastView,
                 forecastIconView,
                 weatherIconView,
-                // paramsManager,
                 iconView,
+                promise,
                 params,
                 city,
                 icon;
 
             city = $('#city-name').val() || 'Krakow';
-            city = $('#city-name').val() || 'Toronto';
 
             params = {
                 q: city,

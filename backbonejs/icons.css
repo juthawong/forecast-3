@@ -2,7 +2,7 @@
 /* Applies a stroke to the icons. Can use percentage for responsive */
 .climacon_component-stroke {
   /*fill: white;*/
-  fill: #444;
+  /*fill: #444;*/
   stroke-width: 0%;
   stroke: black;
 }
