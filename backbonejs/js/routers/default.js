@@ -168,13 +168,11 @@ define([
                 city,
                 icon;
 
-            city = $('#city-name').val() || 'Krakow';
-
             params = {
-                q: city,
-                units: 'metric',
-                mo: null
+                units: 'metric'
             };
+
+            promise = universalUtils.getCurrentPosition();
 
             forecastModel = new ForecastModel();
 
@@ -200,18 +198,38 @@ define([
             });
 
             appView.setView(MAIN_SELECTOR, cityForecastView);
-            
-            forecastModel.fetch({
-                data: params
-            }).then(function() {
-                weatherIconView = new WeatherIconView({
-                    icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
+
+            promise.then(function(result) {
+                params.lat = result.latitude;
+                params.lon = result.longitude;
+
+                forecastModel.fetch({
+                    data: params
+                }).then(function() {
+                    weatherIconView = new WeatherIconView({
+                        icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
+                    });
+
+                    cityForecastView.setView('.weather-icon', weatherIconView.icon);
+
+                    cityForecastView.render();
+                    weatherIconView.render();
                 });
+            }, function(err) {
+                params.q = $('#city-name').val();
 
-                cityForecastView.setView('.weather-icon', weatherIconView.icon);
+                forecastModel.fetch({
+                    data: params
+                }).then(function() {
+                    weatherIconView = new WeatherIconView({
+                        icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
+                    });
 
-                cityForecastView.render();
-                weatherIconView.render();
+                    cityForecastView.setView('.weather-icon', weatherIconView.icon);
+
+                    cityForecastView.render();
+                    weatherIconView.render();
+                });
             });
         }
 

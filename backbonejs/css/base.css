@@ -85,12 +85,14 @@ body {
 	font-size: 4vmin;
 }
 .param-value {
+	/*display: block;*/
+	/*margin: 0 auto;*/
 	font-size: 8vmin;
 }
 .param-unit {
 	font-size: 4vmin;
 }
-.param-value:before {
+.param-name:after {
 	content: '';
 	display: block;
 }
@@ -137,6 +139,18 @@ body {
 	color: #ccc;
 }
 
+.night-temp span {
+	background: #000;
+	border-radius: 4px;
+	padding: 0 .25em;
+	font-size: 6vmin;
+	color: #ccc;
+}
+
+
+.weather-icon {
+	/*text-align: left;*/
+}
 
 
 .night {
@@ -221,6 +235,16 @@ and (orientation: portrait) {
 		margin: 2vmin;
 	}
 
+	.row {
+		height: 20vh;
+	}
+	#main-box .row:first-child {
+		height: 24vh;
+	}
+	#main-box .row:last-child {
+		height: 16vh;
+	}
+
 	.param-value {
 		font-size: 6vh;
 	}
@@ -239,28 +263,28 @@ and (orientation: portrait) {
 
 	/* weather */
 	.weather .weather-icon svg {
-		width: 40vmin;
-		height: 40vmin;
+		width: 24vh;
+		height: 24vh;
 	}
 	.weather .main-description {
 		font-size: 8vmin;
 	}
 	.weather .main-temp {
 		font-size: 25vmin;
-		line-height: 40vmin;
+		line-height: 24vh;
 	}
 
 	/* forecast */
 	.forecast .weather-icon svg {
-		width: 40vmin;
-		height: 40vmin;
+		width: 24vh;
+		height: 24vh;
 	}
 	.forecast .main-description {
 		font-size: 8vmin;
 	}
 	.forecast .main-temp {
 		font-size: 25vmin;
-		line-height: 40vmin;
+		line-height: 24vh;
 	}
 }
 @media only screen 
@@ -300,10 +324,22 @@ and (orientation: landscape) {
 		margin: 0;
 	}
 
+	.row {
+		height: 35vh;
+	}
+	#main-box .row:first-child {
+		height: 48vh;
+	}
+	#main-box .row:last-child {
+		height: 25vh;
+	}
 	
 	
 
 	/* weather */
+	.weather .weather-icon {
+		text-align: left;
+	}
 	.weather .weather-icon svg {
 		width: 20vw;
 		height: 20vw;

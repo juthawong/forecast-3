@@ -10,10 +10,10 @@
 			</form>
 			<!-- </div> -->
 		</header>
-		<section class="flex-row _row">
-			<div id="main-box" class="flex-box box __col-xs-12 _col-sm-6">
+		<section class="flex-row">
+			<div id="main-box" class="flex-box box">
 				<div class="text-center">
-					<div class="row">
+					<div class="row flex-row">
 						<div class="col-xs-6">
 							<p class="weather-icon"></p>
 						</div>
@@ -21,7 +21,9 @@
 							<p class="main-temp">{{temp}}&deg;</p>
 						</div>
 					</div>
-					<p class="main-description">{{list.0.weather.0.description}}</p>
+					<div class="row flex-row">
+						<p class="main-description">{{list.0.weather.0.description}}</p>
+					</div>
 				</div>
 			</div>
 			<div id="sub-box" class="flex-box">
@@ -31,9 +33,10 @@
 						<h2>{{day}}</h2>
 						<h3 class="{{icon}}"></h3>
 						<p class="param">
-							<!-- <span class="param-name">Temp</span> -->
-							<span class="param-value">{{temp}}&deg;</span>
-							<!-- <span class="param-unit">&deg;C</span> -->
+							<span class="param-value">{{dayTemp}}&deg;</span>
+						</p>
+						<p class="param night-temp">
+							<span class="param-value">{{nightTemp}}&deg;</span>
 						</p>
 					</div>
 				{{/each}}

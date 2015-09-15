@@ -17,7 +17,7 @@ define([
     var CityWeatherView = Backbone.Layout.extend({
         template: Handlebars.compile(cityWeatherTemplate),
         now: new Date(),
-        dayTime: null,
+        // dayTime: null,
         icon: null,
         events: {
             'submit form': function() {
@@ -31,19 +31,7 @@ define([
         searchCity: function() {
             this.trigger('search', this);
         },
-        setDayTime: function() {
-            // basically weather icon delivers this info as 10d or 10n
-            if (this.dayTime == null) {
-                if (this.now >= this.model.getTime('sunrise') && this.now < this.model.getTime('sunset')) {
-                    this.dayTime = 'day';
-                }
-                if (this.now < this.model.getTime('sunrise') || this.now >= this.model.getTime('sunset')) {
-                    this.dayTime = 'night';
-                }
-            }
-        },
         setBackground: function() {
-            console.log(this.icon);
             if (this.icon) {
                 var classNames = [];
 
@@ -70,7 +58,7 @@ define([
             return data;
         },
         afterRender: function () {
-            this.setDayTime();
+            // this.setDayTime();
             this.setBackground();
         }
     });

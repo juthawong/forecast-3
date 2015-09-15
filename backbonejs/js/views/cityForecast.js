@@ -88,13 +88,21 @@ define([
 
             // console.log(days);
             // console.log();
+            var params,
+                dayParams,
+                nightParams;
             
             data.days = [];
             for (var i = 0, len = days.length; i < len; i++) {
-                var params = this.findParamsForDate(days[i]);
-                // params.temp = this.model.getTemp('round', params);
-                params.temp = Math.round(params.main.temp);
-                params.icon = CityForecastView.icons[params.weather[0].icon];
+                dayParams = this.findParamsForDate(days[i], 'day');
+
+                params = dayParams;
+                params.dayTemp = Math.round(dayParams.main.temp);
+
+                nightParams = this.findParamsForDate(days[i], 'night');
+                params.nightTemp = Math.round(nightParams.main.temp);
+                
+                params.icon = CityForecastView.icons[dayParams.weather[0].icon];
 
                 data.days.push(params);
             }
@@ -102,23 +110,33 @@ define([
             if (this.model) {
                 data.temp = this.model.getTemp('round', this.model.get('list')[0]);
 
-                if (this.icon === null) {
-                    this.icon = this.model.getWeatherIconCode(this.model.get('list')[0].weather);
-                }
+                this.icon = this.model.getWeatherIconCode(this.model.get('list')[0].weather);
             }
 
             // data.dayTime = this.dayTime;
             
             return data;
         },
-        findParamsForDate: function(date) {
+        findParamsForDate: function(date, period) {
             if (this.forecast && this.forecast[date]) {
-                var day = (new Date(date)).getDay();
+                var day;
+
+                day = (new Date(date)).getDay();
                 
-                for (var dt = 0, dtlen = CityForecastView.dayTimes.length; dt < dtlen; dt++) {
-                    if (this.forecast[date][CityForecastView.dayTimes[dt]]) {
-                        this.forecast[date][CityForecastView.dayTimes[dt]]['day'] = CityForecastView.dayNames[day];
-                        return this.forecast[date][CityForecastView.dayTimes[dt]];
+                if (period == 'day') {
+                    for (var dt = 0, dtlen = CityForecastView.dayTimes.length; dt < dtlen; dt++) {
+                        if (this.forecast[date][CityForecastView.dayTimes[dt]]) {
+                            this.forecast[date][CityForecastView.dayTimes[dt]]['day'] = CityForecastView.dayNames[day];
+                            return this.forecast[date][CityForecastView.dayTimes[dt]];
+                        }
+                    }
+                }
+                if (period == 'night') {
+                    for (var dt = 0, dtlen = CityForecastView.nightTimes.length; dt < dtlen; dt++) {
+                        if (this.forecast[date][CityForecastView.nightTimes[dt]]) {
+                            this.forecast[date][CityForecastView.nightTimes[dt]]['day'] = CityForecastView.dayNames[day];
+                            return this.forecast[date][CityForecastView.nightTimes[dt]];
+                        }
                     }
                 }
             }
@@ -163,13 +181,16 @@ define([
 
     CityForecastView.dayTimes = [
         '12:00:00',
-        '09:00:00',
-        '06:00:00',
-        '03:00:00',
-        '00:00:00',
-        '21:00:00',
+        '15:00:00',
         '18:00:00',
-        '15:00:00'
+        '09:00:00'
+    ];
+
+    CityForecastView.nightTimes = [
+        '00:00:00',
+        '03:00:00',
+        '06:00:00',
+        '21:00:00'
     ];
 
     return CityForecastView;
