@@ -109,6 +109,9 @@ body {
 .day .main-description {
 	color: #222;
 }
+.climacon_component-fill {
+	fill: #fff;
+}
 
 /* night */
 .night svg {
@@ -123,6 +126,10 @@ body {
 .night .main-description {
 	color: #ccc;
 }
+.climacon_component-fill {
+	fill: #000;
+}
+
 
 .night-temp span {
 	background: #000;

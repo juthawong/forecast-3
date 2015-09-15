@@ -8,7 +8,7 @@
 }
 
 .climacon_component-fill {
-  fill: #aedef4;
+  fill: #ffffff;
   stroke-width: 0%;
   stroke: black;
 }
@@ -88,7 +88,8 @@ g, path, circle, rect {
 }
 
 /* WIND */
-.climacon_componentWrap-wind {
+.climacon_componentWrap-wind,
+.climacon_wrapperComponent-clouds {
   -webkit-animation-name: translateWind;
           animation-name: translateWind;
   -webkit-animation-duration: 6s;
