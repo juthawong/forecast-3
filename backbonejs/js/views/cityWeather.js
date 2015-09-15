@@ -17,7 +17,6 @@ define([
     var CityWeatherView = Backbone.Layout.extend({
         template: Handlebars.compile(cityWeatherTemplate),
         now: new Date(),
-        // dayTime: null,
         icon: null,
         events: {
             'submit form': function() {
@@ -45,20 +44,15 @@ define([
         serialize: function() {
             var data = this.model.toJSON();
 
-            data.temp = this.model.getTemp('round');
-            data.sunrise = this.model.getTime('sunrise');
-            data.sunset = this.model.getTime('sunset');
-
-            data.dayTime = this.dayTime;
+            data.temp = Math.round(this.model.get('main').temp);
 
             if (this.model) {
-                this.icon = this.model.getWeatherIconCode(this.model.weather);
+                this.icon = this.model.get('weather')[0].icon;
             }
             
             return data;
         },
         afterRender: function () {
-            // this.setDayTime();
             this.setBackground();
         }
     });

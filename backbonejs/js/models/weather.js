@@ -3,72 +3,18 @@
 define([
     'config',
     'underscore',
-    'backbone',
-    'cocktail',
-
-    'extensions/hateoas'
+    'backbone'
 ], function(
     config,
     _,
-    Backbone,
-    Cocktail,
-
-    hateoas
+    Backbone
 ) {
 
     'use strict';
 
     var WeatherModel = Backbone.Model.extend({
-        baseUrl: config.apiUrl + 'weather',
-        url: config.apiUrl + 'weather',
-        defaults: {
-            // ...
-        },
-        initialize: function() {
-            console.log('initialize model');
-        },
-        getWeatherIconCode: function() {
-            var weather = this.get('weather');
-
-            if (weather) {
-                return weather[0].icon;
-            }
-        },
-        getTemp: function(format) {
-            var main,
-                temp;
-
-            main = this.get('main');
-            if (main) {
-                temp = main .temp;
-            }
-
-            if (format === 'round') {
-                return Math.round(temp);
-            }
-
-            return temp;
-        },
-        getTime: function(period) {
-            var sys
-
-            sys = this.get('sys');
-            if (period === 'dt') {
-                return new Date(this.get('dt') * 1000);
-            }
-            if (sys) {
-                if (period === 'sunrise') {
-                    return new Date(sys.sunrise * 1000);
-                }
-                if (period === 'sunset') {
-                    return new Date(sys.sunset * 1000);
-                }
-            }
-        }
+        url: config.apiUrl + 'weather'
     });
-
-    // Cocktail.mixin(WeatherModel, hateoas);
-    Cocktail.mixin(WeatherModel);
 
     return WeatherModel;
 });

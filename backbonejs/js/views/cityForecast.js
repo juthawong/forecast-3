@@ -17,7 +17,6 @@ define([
     var CityForecastView = Backbone.Layout.extend({
         template: Handlebars.compile(cityForecastTemplate),
         now: new Date(),
-        dayTime: null,
         icon: null,
         forecast: null,
         events: {
@@ -31,17 +30,6 @@ define([
         },
         searchCity: function() {
             this.trigger('search', this);
-        },
-        setDayTime: function() {
-            // basically weather icon delivers this info as 10d or 10n
-            if (this.dayTime == null) {
-                if (this.now >= this.model.getTime('sunrise') && this.now < this.model.getTime('sunset')) {
-                    this.dayTime = 'day';
-                }
-                if (this.now < this.model.getTime('sunrise') || this.now >= this.model.getTime('sunset')) {
-                    this.dayTime = 'night';
-                }
-            }
         },
         setBackground: function() {
             if (this.icon) {
@@ -57,8 +45,6 @@ define([
         serialize: function() {
             var data = this.model.toJSON();
 
-            console.log(this.model);
-
             if (this.model.get('list')) {
                 data['forecast'] = {};
                 _.each(this.model.get('list'), function(weather) {
@@ -73,21 +59,13 @@ define([
                 });
                 this.forecast = data['forecast'];
             }
-            // console.log(data['forecast']);
-            // var today = Date.now();
-            // var days = [];
+
             var days;
 
             if ('keys' in Object) {
                 days = Object.keys(this.forecast).slice(1, 4);
             }
 
-            // for (var i = 1; i <= 3; i++) {
-            //     days.push(new Date(today + (i * 86400000)).toJSON().substring(0, 10));
-            // }
-
-            // console.log(days);
-            // console.log();
             var params,
                 dayParams,
                 nightParams;
@@ -108,12 +86,10 @@ define([
             }
 
             if (this.model) {
-                data.temp = this.model.getTemp('round', this.model.get('list')[0]);
+                data.temp = Math.round(this.model.get('list')[0].main.temp);
 
                 this.icon = this.model.getWeatherIconCode(this.model.get('list')[0].weather);
             }
-
-            // data.dayTime = this.dayTime;
             
             return data;
         },
@@ -142,7 +118,6 @@ define([
             }
         },
         afterRender: function () {
-            this.setDayTime();
             this.setBackground();
         }
     });

@@ -87,23 +87,45 @@ define([
                 weatherIconView,
                 iconView,
                 promise,
-                coords,
                 params,
-                city,
                 icon;
             
-            params = {
-                units: 'metric'
-            };
-
-            promise = universalUtils.getCurrentPosition();
-
+            params = {};
+            params.units = 'metric';
+            
             weatherModel = new WeatherModel();
 
             cityWeatherView = new CityWeatherView({
                 model: weatherModel
             });
 
+            appView.setView(MAIN_SELECTOR, cityWeatherView);
+
+            promise = universalUtils.getCurrentPosition();
+
+            promise.then(function(result) {
+                // geolocation coords
+                params.lat = result.latitude;
+                params.lon = result.longitude;
+            }, function(err) {
+                // city name from input
+                params.q = $('#city-name').val();
+            }).then(function() {
+                weatherModel.fetch({
+                    data: params
+                }).then(function() {
+                    weatherIconView = new WeatherIconView({
+                        icon: weatherModel.get('weather')[0].icon
+                    });
+
+                    cityWeatherView.setView('.weather-icon', weatherIconView.icon);
+
+                    cityWeatherView.render();
+                    weatherIconView.render();
+                });
+            });
+
+            // searching
             cityWeatherView.on('search', function() {
                 params.q = $('#city-name').val();
 
@@ -111,42 +133,7 @@ define([
                     data: params
                 }).then(function() {
                     weatherIconView = new WeatherIconView({
-                        icon: weatherModel.getWeatherIconCode()
-                    });
-
-                    cityWeatherView.setView('.weather-icon', weatherIconView.icon);
-
-                    cityWeatherView.render();
-                    weatherIconView.render();
-                });
-            });
-
-            appView.setView(MAIN_SELECTOR, cityWeatherView);
-            
-            promise.then(function(result) {
-                params.lat = result.latitude;
-                params.lon = result.longitude;
-
-                weatherModel.fetch({
-                    data: params
-                }).then(function() {
-                    weatherIconView = new WeatherIconView({
-                        icon: weatherModel.getWeatherIconCode()
-                    });
-
-                    cityWeatherView.setView('.weather-icon', weatherIconView.icon);
-
-                    cityWeatherView.render();
-                    weatherIconView.render();
-                });
-            }, function(err) {
-                params.q = $('#city-name').val();
-
-                weatherModel.fetch({
-                    data: params
-                }).then(function() {
-                    weatherIconView = new WeatherIconView({
-                        icon: weatherModel.getWeatherIconCode()
+                        icon: weatherModel.get('weather')[0].icon
                     });
 
                     cityWeatherView.setView('.weather-icon', weatherIconView.icon);
@@ -165,14 +152,10 @@ define([
                 iconView,
                 promise,
                 params,
-                city,
                 icon;
 
-            params = {
-                units: 'metric'
-            };
-
-            promise = universalUtils.getCurrentPosition();
+            params = {};
+            params.units = 'metric';
 
             forecastModel = new ForecastModel();
 
@@ -180,14 +163,23 @@ define([
                 model: forecastModel
             });
 
-            cityForecastView.on('search', function() {
-                params.q = $('#city-name').val();
+            appView.setView(MAIN_SELECTOR, cityForecastView);
 
+            promise = universalUtils.getCurrentPosition();
+
+            promise.then(function(result) {
+                // geolocation coords
+                params.lat = result.latitude;
+                params.lon = result.longitude;
+            }, function(err) {
+                // city name from input
+                params.q = $('#city-name').val();
+            }).then(function() {
                 forecastModel.fetch({
                     data: params
                 }).then(function() {
                     weatherIconView = new WeatherIconView({
-                        icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
+                        icon: forecastModel.get('list')[0].weather[0].icon
                     });
 
                     cityForecastView.setView('.weather-icon', weatherIconView.icon);
@@ -197,32 +189,15 @@ define([
                 });
             });
 
-            appView.setView(MAIN_SELECTOR, cityForecastView);
-
-            promise.then(function(result) {
-                params.lat = result.latitude;
-                params.lon = result.longitude;
-
-                forecastModel.fetch({
-                    data: params
-                }).then(function() {
-                    weatherIconView = new WeatherIconView({
-                        icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
-                    });
-
-                    cityForecastView.setView('.weather-icon', weatherIconView.icon);
-
-                    cityForecastView.render();
-                    weatherIconView.render();
-                });
-            }, function(err) {
+            // searching
+            cityForecastView.on('search', function() {
                 params.q = $('#city-name').val();
 
                 forecastModel.fetch({
                     data: params
                 }).then(function() {
                     weatherIconView = new WeatherIconView({
-                        icon: forecastModel.getWeatherIconCode(forecastModel.get('list')[0].weather)
+                        icon: forecastModel.get('list')[0].weather[0].icon
                     });
 
                     cityForecastView.setView('.weather-icon', weatherIconView.icon);

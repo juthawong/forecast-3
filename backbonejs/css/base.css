@@ -69,7 +69,7 @@ body {
 	font-family: 'Open Sans';
 }
 #forecast p[class^=icon] {
-	/*font-size: 5em;*/
+	
 }
 
 /* main values */
@@ -85,8 +85,6 @@ body {
 	font-size: 4vmin;
 }
 .param-value {
-	/*display: block;*/
-	/*margin: 0 auto;*/
 	font-size: 8vmin;
 }
 .param-unit {
@@ -97,19 +95,6 @@ body {
 	display: block;
 }
 
-.sub-day-temp,
-.sub-night-temp {
-	font-size: 3em;
-}
-.sub-day-temp span,
-.sub-night-temp span {
-	padding: 0 .25em;
-}
-.sub-night-temp span {
-	background-color: rgba(0, 0, 0, .5);
-	color: #ccc;
-	border-radius: 4px;
-}
 
 /* day */
 .day svg {
@@ -148,11 +133,6 @@ body {
 }
 
 
-.weather-icon {
-	/*text-align: left;*/
-}
-
-
 .night {
 	color: #aaa;
 }
@@ -170,21 +150,9 @@ footer {
 	height: 300px;
 }
 
-#config-box {
-	/*background: red;*/
-}
-#main-box {
-	/*background: green;*/
-}
-#sub-box {
-	/*background: blue;*/
-}
-
 .flex-row {
 	display: flex;
 	justify-content: space-around;
-	/*margin: 5vw;*/
-	/*flex-wrap: wrap;*/
 	align-items: center;
 }
 .flex-row-between {
@@ -193,7 +161,7 @@ footer {
 	align-items: center;
 }
 .flex-box {
-	display: _flex;
+	
 }
 
 h2 {
@@ -207,9 +175,6 @@ h3 {
 
 
 @media only screen 
-/*and (min-device-width: 375px) */
-/*and (max-device-width: 667px) */
-/*and (-webkit-min-device-pixel-ratio: 2)*/
 and (orientation: portrait) {
 	.flex-row {
 		flex-wrap: wrap;
@@ -288,10 +253,7 @@ and (orientation: portrait) {
 	}
 }
 @media only screen 
-/*and (min-device-width: 375px) */
-/*and (max-device-width: 667px) */
-/*and (-webkit-min-device-pixel-ratio: 2)*/
-and (orientation: landscape) { 
+and (orientation: landscape) {
 	#config-box {
 		height: 15vh;
 		margin: 2.5vh 2.5vh 0;
