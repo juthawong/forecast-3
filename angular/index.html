@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="phonecatApp">
+	<meta chaset="utf-8">
+	<title>Forecast App</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.5-dist/css/bootstrap.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="icomoon/style.css"> -->
+
+	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
+	<!-- <link rel="stylesheet" type="text/css" href="icons.css"> -->
+
+	<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+<body ng-controller="PhoneListCtrl">
+
+  <ul>
+    <li ng-repeat="phone in phones">
+      <span>{{phone.name}}</span>
+      <p>{{phone.snippet}}</p>
+    </li>
+  </ul>
+
+</body>
+
+	<script src="js/angular.min.js"></script>
+	<script src="app/js/controllers.js"></script>
+</body>
+</html>
