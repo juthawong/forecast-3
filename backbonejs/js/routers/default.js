@@ -91,6 +91,7 @@ define([
                 icon;
             
             params = {};
+            params.appid = appid;
             params.units = 'metric';
             
             weatherModel = new WeatherModel();
@@ -155,6 +156,7 @@ define([
                 icon;
 
             params = {};
+            params.appid = appid;
             params.units = 'metric';
 
             forecastModel = new ForecastModel();

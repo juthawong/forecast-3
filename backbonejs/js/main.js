@@ -1,6 +1,7 @@
 // console.log('main logic is ready...');
 
-var baseUrl;
+var baseUrl,
+    appid = 'b2a78096a95ed4ca9074738174e5fc75';
 
 if (window.location.hostname == 'localhost' || window.location.hostname == '192.168.1.100') {
     baseUrl = '/~ash/forecast/backbonejs/js';
