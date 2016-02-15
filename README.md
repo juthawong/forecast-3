@@ -1,4 +1,4 @@
 # forecast
-simple forecast app written in JavaScript
+Simple forecast app written in JavaScript, Backbone, etc.
 
-[app on production](lukasz-jakub-adamczuk.github.io/forecast)
+[webpage](http://lukasz-jakub-adamczuk.github.io/forecast)
